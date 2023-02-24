@@ -1,6 +1,8 @@
 <?php
   class Users extends Controller {
+    private $userModel;
     public function __construct(){
+      
       $this->userModel = $this->model('User');
     }
 
@@ -96,7 +98,7 @@
       // Check for POST
       if($_SERVER['REQUEST_METHOD'] == 'POST'){
         // Process form
-       
+      
         
         // Init data
         $data =[
@@ -162,7 +164,7 @@
       $_SESSION['user_id'] = $user->id;
       $_SESSION['user_email'] = $user->email;
       $_SESSION['user_name'] = $user->name;
-      redirect('pages/index');
+      redirect('posts/dashboard');
     }
 
     public function logout(){
@@ -172,12 +174,5 @@
       session_destroy();
       redirect('users/login');
     }
-
-    public function isLoggedIn(){
-      if(isset($_SESSION['user_id'])){
-        return true;
-      } else {
-        return false;
-      }
-    }
+     
   }
